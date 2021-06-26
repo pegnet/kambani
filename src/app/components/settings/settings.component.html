@@ -1,0 +1,175 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="page-content">
+        <h1 class="page-title text-center">
+          Settings
+        </h1>
+        <div class="card text-center">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active': checkIsActive('domains')}" (click)="selectTab('domains')">
+                  Whitelisted Domains
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active': checkIsActive('changePass')}" (click)="selectTab('changePass')">
+                  Change Password
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <div class="row" id="accordion" *ngIf="checkIsActive('domains')">
+              <div class="col-sm-6 mb-3">
+                <div class="card">
+                  <div class="card-header collapsed" (click)="fctRequestExpanded = !fctRequestExpanded" id="fctHeading" data-toggle="collapse" data-target="#fctCollapse" aria-expanded="true" aria-controls="fctCollapse">
+                    FCT Addresses
+                    <i class="fas float-right mt-1" [ngClass]="{'fa-angle-double-down': !fctRequestExpanded, 'fa-angle-double-up': fctRequestExpanded}"></i>
+                  </div>
+            
+                  <div id="fctCollapse" class="collapse show" aria-labelledby="fctHeading">
+                    <div class="card-body">
+                      <div *ngFor="let el of fctAddressesRequestWhitelistedDomains; let i=index">
+                        <div class="list-group list-group-horizontal" *ngIf="i % 2 == 0">
+                          <a class="list-group-item list-group-item-action waves-light" mdbWavesEffect *ngFor="let domain of fctAddressesRequestWhitelistedDomains.slice(i, i+2)">
+                            {{domain}}
+                            <i class="fas fa-times float-right mt-1" (click)="removeDomain(factomAddressType.FCT, domain)"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <div *ngIf="fctAddressesRequestWhitelistedDomains.length == 0">
+                        <p class="text-center text-secondary">You have not whitelisted any domains yet</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 mb-3">
+                <div class="card">
+                  <div class="card-header collapsed" (click)="ecRequestExpanded = !ecRequestExpanded" id="ecHeading" data-toggle="collapse" data-target="#ecCollapse" aria-expanded="true" aria-controls="ecCollapse">
+                    EC Addresses
+                    <i class="fas float-right mt-1" [ngClass]="{'fa-angle-double-down': !ecRequestExpanded, 'fa-angle-double-up': ecRequestExpanded}"></i>
+                  </div>
+            
+                  <div id="ecCollapse" class="collapse show" aria-labelledby="ecHeading">
+                    <div class="card-body">
+                      <div *ngFor="let el of ecAddressesRequestWhitelistedDomains; let i=index">
+                        <div class="list-group list-group-horizontal" *ngIf="i % 2 == 0">
+                          <a class="list-group-item list-group-item-action waves-light" mdbWavesEffect *ngFor="let domain of ecAddressesRequestWhitelistedDomains.slice(i, i+2)">
+                            {{domain}}
+                            <i class="fas fa-times float-right mt-1" (click)="removeDomain(factomAddressType.EC, domain)"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <div *ngIf="ecAddressesRequestWhitelistedDomains.length == 0">
+                        <p class="text-center text-secondary">You have not whitelisted any domains yet</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 mb-3">
+                <div class="card">
+                  <div class="card-header collapsed" (click)="etherLinkRequestExpanded = !etherLinkRequestExpanded" id="etherLinkHeading" data-toggle="collapse" data-target="#etherLinkCollapse" aria-expanded="true" aria-controls="etherLinkCollapse">
+                    EtherLink Addresses
+                    <i class="fas float-right mt-1" [ngClass]="{'fa-angle-double-down': !etherLinkRequestExpanded, 'fa-angle-double-up': etherLinkRequestExpanded}"></i>
+                  </div>
+            
+                  <div id="etherLinkCollapse" class="collapse show" aria-labelledby="etherLinkHeading">
+                    <div class="card-body">
+                      <div *ngFor="let el of etherLinkAddressesRequestWhitelistedDomains; let i=index">
+                        <div class="list-group list-group-horizontal" *ngIf="i % 2 == 0">
+                          <a class="list-group-item list-group-item-action waves-light" mdbWavesEffect *ngFor="let domain of etherLinkAddressesRequestWhitelistedDomains.slice(i, i+2)">
+                            {{domain}}
+                            <i class="fas fa-times float-right mt-1" (click)="removeDomain(factomAddressType.EtherLink, domain)"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <div *ngIf="etherLinkAddressesRequestWhitelistedDomains.length == 0">
+                        <p class="text-center text-secondary">You have not whitelisted any domains yet</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 mb-3">
+                <div class="card">
+                  <div class="card-header collapsed" (click)="blockSigningKeyRequestExpanded = !blockSigningKeyRequestExpanded" id="blockSigningKeyHeading" data-toggle="collapse" data-target="#blockSigningKeyCollapse" aria-expanded="true" aria-controls="blockSigningKeyCollapse">
+                    Block Signing Keys
+                    <i class="fas float-right mt-1" [ngClass]="{'fa-angle-double-down': !blockSigningKeyRequestExpanded, 'fa-angle-double-up': blockSigningKeyRequestExpanded}"></i>
+                  </div>
+            
+                  <div id="blockSigningKeyCollapse" class="collapse show" aria-labelledby="blockSigningKeyHeading">
+                    <div class="card-body">
+                      <div *ngFor="let el of blockSigningKeysRequestWhitelistedDomains; let i=index">
+                        <div class="list-group list-group-horizontal" *ngIf="i % 2 == 0">
+                          <a class="list-group-item list-group-item-action waves-light" mdbWavesEffect *ngFor="let domain of blockSigningKeysRequestWhitelistedDomains.slice(i, i+2)">
+                            {{domain}}
+                            <i class="fas fa-times float-right mt-1" (click)="removeDomain(keyType.BlockSigningKey, domain)"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <div *ngIf="blockSigningKeysRequestWhitelistedDomains.length == 0">
+                        <p class="text-center text-secondary">You have not whitelisted any domains yet</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center" *ngIf="checkIsActive('changePass')">
+              <div class="col-md-6 align-self-center">
+                <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+                  <div class="form-group">
+                    <label for="oldPassword">Old Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="oldPassword"
+                      formControlName="oldPassword"
+                      [ngClass]="{ 'is-invalid': oldPassword.touched && oldPassword.errors }">
+                    <div *ngIf="oldPassword.errors" class="invalid-feedback">
+                      <div *ngIf="oldPassword.errors.required">Old Password is required!</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="newPassword"
+                      formControlName="password"
+                      [ngClass]="{ 'is-invalid': newPassword.touched && newPassword.errors }">
+                    <div *ngIf="newPassword.errors" class="invalid-feedback">
+                      <div *ngIf="newPassword.errors.required">New Password is required!</div>
+                      <div *ngIf="newPassword.errors.minlength">
+                        Your new password must be at least 18 characters long. Hint: Use 4-5 easy to remember words in sequence (e.g. TorReallyLovesMeatballs)
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password</label>
+                    <input
+                      type="password"
+                      formControlName="confirmPassword"
+                      id="confirmPassword"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': confirmPassword.touched && (confirmPassword.errors || changePasswordForm.errors?.passwordsMismatch) }" >
+                    <div *ngIf="confirmPassword.errors || changePasswordForm.errors?.passwordsMismatch" class="invalid-feedback">
+                      <div *ngIf="confirmPassword.errors?.required">Confirm password is required!</div>
+                      <div *ngIf="changePasswordForm.errors?.passwordsMismatch">Passwords do not match!</div>
+                    </div>
+                  </div>
+                  <input type="submit" class="btn btn-primary" value="Change Password" [disabled]="changePasswordForm.invalid" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 

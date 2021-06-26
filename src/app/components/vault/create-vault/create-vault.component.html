@@ -1,0 +1,46 @@
+<div id="create-vault">
+  <div class="auth-side">
+    <div class="form-container">
+      <div class="heading">
+        <h1>
+          Create new vault
+        </h1>
+      </div>
+      <form [formGroup]="createVaultForm" (ngSubmit)="createVault()">
+        <div class="form-group">
+          <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              formControlName="password"
+              [ngClass]="{ 'is-invalid': password.touched && password.errors }">
+            <div *ngIf="password.errors" class="invalid-feedback">
+              <div *ngIf="password.errors.required">Password is required!</div>
+              <div *ngIf="password.errors.minlength">
+                Your password must be at least 18 characters long. Hint: Use 4-5 easy to remember words in sequence (e.g. TorReallyLovesMeatballs)
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              formControlName="confirmPassword"
+              id="confirmPassword"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': confirmPassword.touched && (confirmPassword.errors || createVaultForm.errors?.passwordsMismatch) }" >
+            <div *ngIf="confirmPassword.errors || createVaultForm.errors?.passwordsMismatch" class="invalid-feedback">
+              <div *ngIf="confirmPassword.errors?.required">Confirm password is required!</div>
+              <div *ngIf="createVaultForm.errors?.passwordsMismatch">Passwords do not match!</div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Create" [disabled]="createVaultForm.invalid" />
+      </form>
+      <div class="restore mt-5">
+        <a class="text-warning" routerLink="/vault/restore">Import using vault backup file</a>
+      </div>
+    </div>
+  </div>
+  <div class="background-side"></div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="row card-holder">
+        <div class="col-12 col-sm-4">
+          <div class="card-item">
+            <div class="icon-holder">
+              <i class="fas fa-fingerprint fa-2x"></i>
+            </div>
+            <div class="text-holder">
+              <span class="title">Identities</span>
+              <span class="number">{{didsCount}}</span>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="card-item">
+            <div class="icon-holder txt">
+              FCT
+            </div>
+            <div class="text-holder">
+              <span class="title">FCT Addresses</span>
+              <span class="number">{{fctAddressesCount}}</span>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="card-item">
+            <div class="icon-holder txt">
+              EC
+            </div>
+            <div class="text-holder">
+              <span class="title">EC Addresses</span>
+              <span class="number">{{ecAddressesCount}}</span>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="page-content graph-panel">
+        <div class="page-header">
+          <h1 class="page-title">
+            Signed Requests
+          </h1>
+        </div>
+        <div class="graph-holder"><canvas #signedRequests></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
